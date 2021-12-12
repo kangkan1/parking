@@ -1,0 +1,160 @@
+<html>
+    <head>
+        <title>Profile Page</title>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
+        <style>
+            table {
+              font-family: arial, sans-serif;
+              border-collapse: collapse;
+              width: 100%;
+            }
+            
+            td, th {
+              border: 1px solid #dddddd;
+              text-align: left;
+              padding: 8px;
+            }
+            
+            tr:nth-child(even) {
+              background-color: #dddddd;
+            }
+        </style>
+    
+    </head>
+<body>
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/booking">Booking</a>
+                    </li>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link active" href="#ofile">Profile</a>
+                    </li>
+                  
+                </ul>
+                <form class="d-flex">
+                    <a data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <p style="color:white;margin:0">{{request.user.username}}</p>
+                    </a> 
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Logout or Sign up</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body row">
+                                <a href="/logout_user" class="btn btn-outline-primary btn-lg my-1" tabindex="-1" role="button" aria-disabled="true">Log out</a>
+                                <a href="/signup" class="btn btn-outline-secondary btn-lg my-1" tabindex="-1" role="button" aria-disabled="true">Sign up</a>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary my-1 mx-1" data-bs-dismiss="modal">Close</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </form>
+                </div>
+            </div>
+        </nav> 
+        <div>
+            <h3>Your 5 latest bookings</h3>
+            <form method="POST" action="/delete_booking">
+                {% csrf_token %}
+                <table style="width:70%;margin:auto;">
+                    <tr>
+                    <th></th>  
+                    <th>Date</th>
+                    <th>Start time</th>
+                    <th>Time booked</th>
+                    <th>Price</th>
+                    <th>Payment</th>
+                    </tr>
+                    <tr>
+                    <td><input class="form-check-input" type="checkbox" value={{reg_id.0}} id="checkbox1" name="checkbox1" ></td>
+                    <td>{{date.0}}</td>
+                    <td>{{start_time.0}}</td>
+                    <td>{{ranged.0}}</td>
+                    <td>{{price.0}}</td>
+                    <td>{{payment.0}}</td>
+                    </tr>
+                    <tr>
+                    <td><input class="form-check-input" type="checkbox" value={{reg_id.1}} id="checkbox2" name="checkbox2" ></td>
+                    <td>{{date.1}}</td>
+                    <td>{{start_time.1}}</td>
+                    <td>{{ranged.1}}</td>
+                    <td>{{price.1}}</td>
+                    <td>{{payment.1}}</td>
+                    </tr>
+                    <tr>
+                    <td><input class="form-check-input" type="checkbox" value={{reg_id.2}} id="checkbox3" name="checkbox3"></td>  
+                    <td>{{date.2}}</td>
+                    <td>{{start_time.2}}</td>
+                    <td>{{ranged.2}}</td>
+                    <td>{{price.2}}</td>
+                    <td>{{payment.2}}</td>
+                    </tr>
+                    <tr>
+                        <td><input class="form-check-input" type="checkbox" value={{reg_id.3}} id="checkbox4" name="checkbox4"></td>
+                        <td>{{date.3}}</td>
+                        <td>{{start_time.3}}</td>
+                        <td>{{ranged.3}}</td>
+                        <td>{{price.3}}</td>
+                        <td>{{payment.3}}</td>
+                    </tr>
+                    <tr>
+                        <td><input class="form-check-input" type="checkbox" value={{reg_id.4}} id="checkbox5" name="checkbox5" ></td>
+                        <td>{{date.4}}</td>
+                        <td>{{start_time.4}}</td>
+                        <td>{{ranged.4}}</td>
+                        <td>{{price.4}}</td>
+                        <td>{{payment.4}}</td>
+                    </tr>  
+                </table>
+                <hr>  
+                <button type="submit" style="float:right;"class="btn btn-danger">Delete</button>
+                
+            </form>  
+            <br>  
+        </div>
+        <div>
+            <br>
+            <div class="card mt-5">
+                
+                <h5 class="card-header">Address:</h5>
+                <div class="card-body">
+                    <img class="mb-4" src="/static/img/parking_logo.png" alt="" style="height:auto;
+                    min-height:50px;
+                    height:auto;
+                    height:50px; ">
+                    <h5 class="card-title">My Parking Pvt. Ltd.</h5>
+                    <p class="card-text">#112/332, Patli Gali, Gali Road no. 3, New Delhi-99</p>
+                </div>
+            </div>
+            <p>&nbsp; &nbsp; &copy; Kangkan Lahkar</p>
+        </div>
+
+
+    </div>
+    
+    
+</body>
+
+</html>
