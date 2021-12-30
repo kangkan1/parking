@@ -68,7 +68,7 @@
             {%csrf_token %} 
                 <div class="container my-3">
                     <label for="date">Pick a date:</label>
-                    <input class="form-control" type="date" id="date" name="date">
+                    <input class="form-control" type="date" id="date" name="date" value="2022-01-01">
                     
                 </div>    
                 <div class="form-floating my-3">
@@ -86,6 +86,7 @@
                 </div>
                 <p id="showPrice" style="color:green;"></p>
                 <script>
+
                     function myFunction(val) {
                         document.getElementById("showPrice").innerHTML = "Rs. "+val*50;
                         
