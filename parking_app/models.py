@@ -24,3 +24,8 @@ class Registration(models.Model):
     ranged = models.DecimalField(decimal_places=1,max_digits=3)
     vehicle = models.CharField(max_length=1, choices=VEHCICLE_TYPE)
     payment = models.BooleanField(default=False)
+
+ # Page views
+class PageViewsCounter(models.Model):  
+    page_name=models.CharField(max_length=150, unique=True)
+    counter=models.IntegerField(default=0)

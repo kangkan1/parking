@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
-from parking_app.models import Registration
+from parking_app.models import Registration, PageViewsCounter
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -8,9 +8,22 @@ import datetime
 # demo user: demo@user.in, password: demouser123
 # Create your views here.
 def index(request):
+    page = PageViewsCounter.objects.get(page_name='home')
+    page.counter=page.counter+1
+    page.save()
+    total = PageViewsCounter.objects.get(page_name='total')
+    total.counter = total.counter+1
+    total.save()
+    #PageViewsCounter.objects.filter(page_name="home").update(counter=counter+1)
     return render(request, "index.html")
 
 def booking(request):
+    page = PageViewsCounter.objects.get(page_name='booking')
+    page.counter=page.counter+1
+    page.save()
+    total = PageViewsCounter.objects.get(page_name='total')
+    total.counter = total.counter+1
+    total.save()
     if request.user.is_anonymous:
         #print("Anonymous user, from booking")
         return render(request, 'login.html', {'message':"Please login to continue"})
@@ -20,6 +33,12 @@ def booking(request):
            
 
 def profile(request):
+    page = PageViewsCounter.objects.get(page_name='profile')
+    page.counter=page.counter+1
+    page.save()
+    total = PageViewsCounter.objects.get(page_name='total')
+    total.counter = total.counter+1
+    total.save()
     if request.user.is_anonymous:
         #print("Anonymous user, from booking")
         return render(request, 'login.html', {'message':"Please login to continue"})
@@ -81,6 +100,12 @@ def login_user(request):
                 "message":"Failed to login"
             } 
             return render(request, "login.html", context)
+    page = PageViewsCounter.objects.get(page_name='login_user')
+    page.counter=page.counter+1
+    page.save()
+    total = PageViewsCounter.objects.get(page_name='total')
+    total.counter = total.counter+1
+    total.save()        
     return render(request, "login.html")
 
 def logout_user(request):
@@ -89,6 +114,12 @@ def logout_user(request):
     return redirect('/')
 
 def signup(request):
+    page = PageViewsCounter.objects.get(page_name='login_user')
+    page.counter=page.counter+1
+    page.save()
+    total = PageViewsCounter.objects.get(page_name='total')
+    total.counter = total.counter+1
+    total.save()  
     return render(request, "signup.html")
 
 # this is for inbuild user
@@ -155,6 +186,12 @@ def create_account(request):
 
 # book method will receive parameters from booking
 def book(request):
+    page = PageViewsCounter.objects.get(page_name='book')
+    page.counter=page.counter+1
+    page.save()
+    total = PageViewsCounter.objects.get(page_name='total')
+    total.counter = total.counter+1
+    total.save()  
     #print("book method called")
     current_user = request.user
     #print(f"user id: {current_user.id}")
@@ -216,6 +253,12 @@ def foo(request):
 '''
 
 def checkout(request): 
+    page = PageViewsCounter.objects.get(page_name='checkout')
+    page.counter=page.counter+1
+    page.save()
+    total = PageViewsCounter.objects.get(page_name='total')
+    total.counter = total.counter+1
+    total.save()
     if request.method == "POST" and not request.user.is_anonymous:
         id = request.POST.get('reg_id')
         reg = Registration.objects.get(id=id)
@@ -242,6 +285,12 @@ def checkout(request):
 
 
 def final_checkout(request):
+    page = PageViewsCounter.objects.get(page_name='final_checkout')
+    page.counter=page.counter+1
+    page.save()
+    total = PageViewsCounter.objects.get(page_name='total')
+    total.counter = total.counter+1
+    total.save()
     if request.user.is_anonymous:
         return render(request, "login.html", {'message':'Please login to continue'}) 
     return render(request, "finalCheckout.html")
@@ -260,7 +309,13 @@ def delete_booking(request):
         #print(f"check: {check}")
     return redirect('/profile')    
 
-def other_services(request): 
+def other_services(request):
+    page = PageViewsCounter.objects.get(page_name='other_services')
+    page.counter=page.counter+1
+    page.save()
+    total = PageViewsCounter.objects.get(page_name='total')
+    total.counter = total.counter+1
+    total.save() 
     return render(request, "other_services.html")
 
 
