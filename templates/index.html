@@ -127,12 +127,42 @@
                 <a href="/other_services" class="btn btn-primary">Check</a>
             </div>
             <div>
+                {% if star_1 > 0.5 %}
                 <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
+                {% elif star_1 <= 0.5 and star_1 > 0 %}
                 <span class="fa fa-star-half-o checked"></span>
-                <span>12 reviews</span>
+                {% else %}
+                <span class="fa fa-star"></span>
+                {% endif %}
+                {% if star_1 > 1.5 %}
+                <span class="fa fa-star checked"></span>
+                {% elif star_1 <= 1.5 and star_1 > 1 %}
+                <span class="fa fa-star-half-o checked"></span>
+                {% else %}
+                <span class="fa fa-star"></span>
+                {% endif %}
+                {% if star_1 > 2.5 %}
+                <span class="fa fa-star checked"></span>
+                {% elif star_1 <= 2.5 and star_1 > 2 %}
+                <span class="fa fa-star-half-o checked"></span>
+                {% else %}
+                <span class="fa fa-star"></span>
+                {% endif %}
+                {% if star_1 > 3.5 %}
+                <span class="fa fa-star checked"></span>
+                {% elif star_1 <= 3.5 and star_1 > 3 %}
+                <span class="fa fa-star-half-o checked"></span>
+                {% else %}
+                <span class="fa fa-star"></span>
+                {% endif %}
+                {% if star_1 > 4.5 %}
+                <span class="fa fa-star checked"></span>
+                {% elif star_1 <= 4.5 and star_1 > 4 %}
+                <span class="fa fa-star-half-o checked"></span>
+                {% else %}
+                <span class="fa fa-star"></span>
+                {% endif %}
+                <span>{{rating_1}} reviews</span>
             </div>
         </div>
         <div class="card mx-4 my-4" style="width: 18rem;cursor:hand;" onclick="location.href='/other_services';">
@@ -143,12 +173,42 @@
                 <a href="/other_services" class="btn btn-primary">Check</a>
             </div>
             <div>
+                {% if star_2 > 0.5 %}
                 <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
+                {% elif star_2 <= 0.5 and star_2 > 0 %}
+                <span class="fa fa-star-half-o checked"></span>
+                {% else %}
                 <span class="fa fa-star"></span>
-                <span>17 reviews</span>
+                {% endif %}
+                {% if star_2 > 1.5 %}
+                <span class="fa fa-star checked"></span>
+                {% elif star_2 <= 1.5 and star_2 > 1 %}
+                <span class="fa fa-star-half-o checked"></span>
+                {% else %}
+                <span class="fa fa-star"></span>
+                {% endif %}
+                {% if star_2 > 2.5 %}
+                <span class="fa fa-star checked"></span>
+                {% elif star_2 <= 2.5 and star_2 > 2 %}
+                <span class="fa fa-star-half-o checked"></span>
+                {% else %}
+                <span class="fa fa-star"></span>
+                {% endif %}
+                {% if star_2 > 3.5 %}
+                <span class="fa fa-star checked"></span>
+                {% elif star_2 <= 3.5 and star_2 > 3 %}
+                <span class="fa fa-star-half-o checked"></span>
+                {% else %}
+                <span class="fa fa-star"></span>
+                {% endif %}
+                {% if star_2 > 4.5 %}
+                <span class="fa fa-star checked"></span>
+                {% elif star_2 <= 4.5 and star_2 > 4 %}
+                <span class="fa fa-star-half-o checked"></span>
+                {% else %}
+                <span class="fa fa-star"></span>
+                {% endif %}
+                <span>{{rating_2}} reviews</span>
             </div>
         </div>    
         <div class="card mx-4 my-4" style="width: 18rem;cursor:hand;" onclick="location.href='/other_services';">
@@ -159,12 +219,43 @@
                 <a href="/other_services" class="btn btn-primary">Check</a>
             </div>
             <div>
+                {% if star_3 > 0.5 %}
                 <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa fa-star-half-o checked"></span>
+                {% elif star_3 <= 0.5 and star_3 > 0 %}
+                <span class="fa fa-star-half-o checked"></span>
+                {% else %}
                 <span class="fa fa-star"></span>
-                <span>21 reviews</span>
+                {% endif %}
+                {% if star_3 > 1.5 %}
+                <span class="fa fa-star checked"></span>
+                {% elif star_3 <= 1.5 and star_3 > 1 %}
+                <span class="fa fa-star-half-o checked"></span>
+                {% else %}
+                <span class="fa fa-star"></span>
+                {% endif %}
+                {% if star_3 > 2.5 %}
+                <span class="fa fa-star checked"></span>
+                {% elif star_3 <= 2.5 and star_3 > 2 %}
+                <span class="fa fa-star-half-o checked"></span>
+                {% else %}
+                <span class="fa fa-star"></span>
+                {% endif %}
+                {% if star_3 > 3.5 %}
+                <span class="fa fa-star checked"></span>
+                {% elif star_3 <= 3.5 and star_3 > 3 %}
+                <span class="fa fa-star-half-o checked"></span>
+                {% else %}
+                <span class="fa fa-star"></span>
+                {% endif %}
+                {% if star_3 > 4.5 %}
+                <span class="fa fa-star checked"></span>
+                {% elif star_3 <= 4.5 and star_3 > 4 %}
+                <span class="fa fa-star-half-o checked"></span>
+                {% else %}
+                <span class="fa fa-star"></span>
+                {% endif %}
+                <span>{{rating_3}} reviews</span>
+                
             </div>
         </div>   
 

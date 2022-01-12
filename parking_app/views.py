@@ -14,8 +14,9 @@ def index(request):
     total = PageViewsCounter.objects.get(page_name='total')
     total.counter = total.counter+1
     total.save()
+
     #PageViewsCounter.objects.filter(page_name="home").update(counter=counter+1)
-    return render(request, "index.html")
+    return render(request, "index.html", {'rating_1':14, 'rating_2':17, 'rating_3':7, 'star_1':4.2, 'star_2':4.1, 'star_3':3.7})
 
 def booking(request):
     page = PageViewsCounter.objects.get(page_name='booking')
