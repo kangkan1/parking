@@ -21,6 +21,15 @@ urlpatterns = [
     path('other_services', views.other_services, name='Other services'),
     path("final_checkout", views.final_checkout, name="Final Checkout"),
     path("delete_booking", views.delete_booking, name="Delete Booking"),
-    path("<str:id>", views.error_404, name="Error")
+
+    path("emp/show", views.emp_show, name="Employee Show"),
+    path("emp/show/<str:id>", views.employee_show, name="Employee Show"),
+    path("emp/add", views.employee_add, name="Employee Show"),
+    path("emp/delete/<str:id>", views.employee_delete, name="Employee Delete"),
+    path("emp/update/<str:id>", views.employee_update, name="Employee Update"),
+
+    
+    path("<str:id>", views.error_404, name="Error"),
+    path("<str:id1>/<str:id2>", views.error_404, name="Error")
 
 ]

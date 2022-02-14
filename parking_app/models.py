@@ -29,3 +29,13 @@ class Registration(models.Model):
 class PageViewsCounter(models.Model):  
     page_name=models.CharField(max_length=150, unique=True)
     counter=models.IntegerField(default=0)
+
+# Employee models
+# This was created for some other project demo
+class Employee(models.Model):  
+    eid = models.CharField(max_length=20)  
+    ename = models.CharField(max_length=100)  
+    eemail = models.EmailField()  
+    econtact = models.CharField(max_length=15)  
+    class Meta:  
+        db_table = "employee"     

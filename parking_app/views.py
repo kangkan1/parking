@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
-from parking_app.models import Registration, PageViewsCounter
+from parking_app.models import Registration, PageViewsCounter, Employee
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -319,6 +319,80 @@ def other_services(request):
     total.save() 
     return render(request, "other_services.html")
 
+def emp_show(request):
+    return redirect('/emp/show/0')
+
+def employee_show(request, id):
+    #print("id: "+id)
+    i = int(id)
+    multiplier=10
+    #print("type of id: "+str(type(id)))
+    employees = Employee.objects.all()[i*multiplier:multiplier*(i+1)]
+    count = Employee.objects.all().count()
+    return render(request, 'emp_show.html', {'employees':employees, 
+                "count":count, "range":i, "next":(i+1), "prev":(i-1),
+                "left":(multiplier*i), "right":(multiplier*(i+1))})
+    
+def employee_add(request):
+    context = {}
+    if request.method == "POST":
+        #print("POST method: add employee")
+        emp_id = request.POST.get('employeeId')
+        email = request.POST.get('email')
+        emp_name = request.POST.get('name')
+        emp_contact = request.POST.get('contact')
+        #print("emp_id: "+emp_id)
+        #print("name: "+request.POST.get('name'))
+        #print("email: "+request.POST.get('email'))
+        #print("contact: "+request.POST.get('contact'))
+        check_id = Employee.objects.filter(eid=emp_id) | Employee.objects.filter(eemail=email)
+        #print("check_id: "+str(check_id.eid))
+        if check_id.exists():
+            context={"message":"Email or id is already in use"}
+        elif len(emp_contact) != 10:
+            context={"message":"Phone number should be of length 10"}
+        elif len(emp_id) > 20:
+            context={"message":"Employee id should be of less than 20 characters"}    
+        else:
+            emp = Employee(eid=emp_id, eemail=email, ename=emp_name, econtact=emp_contact)
+            emp.save()
+            context={"created":"User created successfully"}   
+        #context={"message":"Employee added successfully"}
+    return render(request, 'emp_add.html', context)
+
+def employee_delete(request, id):
+    print("emp delete id: "+id)
+    try:
+        Employee.objects.filter(eid=id).delete()
+    except:
+        a=1    
+    return redirect('/emp/show/0')
+
+def employee_update(request, id):
+    #print("Hello")
+    emp =  Employee.objects.get(eid=id)
+    #form = EmployeeForm(request.POST, instance = emp)
+    message = ""
+    created = ""
+    if request.method == "POST":
+        emp_id = request.POST.get('employeeId')
+        email = request.POST.get('email')
+        emp_name = request.POST.get('name')
+        emp_contact = request.POST.get('contact')
+        if len(emp_contact) != 10:
+            message = "Phone number should be of length 10"
+        elif len(emp_id) > 20:
+            message = "Employee id should be of less than 20 characters"
+        else:
+            emp.eemail = email
+            emp.ename = emp_name
+            emp.econtact = emp_contact
+            emp.save()
+            created ="Employee details updated successfully"
+            return render(request, 'emp_update.html', {"emp":emp,"created":created, "message":message})
+        #print("post method with id: "+id)
+    context = {emp}
+    return render(request, 'emp_update.html', {"emp":emp,"message":message,"created":created })
 
 #error handling
 def error_404(request, *args, **argv):
