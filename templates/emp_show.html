@@ -39,6 +39,7 @@
                 <th scope="col">Employee Name</th>
                 <th scope="col">Employee email</th>
                 <th scope="col">Employee Contact</th>
+                <th scope="col">Employee Adress</th>
                 <th scope="col">Actions</th>
               </tr>
             </thead>
@@ -48,7 +49,8 @@
                       <td>{{ employee.eid }}</td>  
                       <td>{{ employee.ename }}</td>  
                       <td>{{ employee.eemail }}</td>  
-                      <td>{{ employee.econtact }}</td>  
+                      <td>{{ employee.econtact }}</td>
+                      <td>{{ employee.eaddress}}</td>   
                       <td>  
                           <a class="btn btn-sm btn-primary" href="/emp/update/{{employee.eid}}">Edit</span></a>  
                           <a class="btn btn-sm btn-danger" href="/emp/delete/{{employee.eid}}">Delete</a> 
@@ -57,6 +59,7 @@
               {% endfor %}  
             </tbody>
           </table>
+         
 
           <div style="display:inline;float: right">
             <span>Showing results {{left}}-{{right}} of {{count}} employess </span>

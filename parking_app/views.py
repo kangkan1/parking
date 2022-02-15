@@ -337,33 +337,33 @@ def employee_add(request):
     context = {}
     if request.method == "POST":
         #print("POST method: add employee")
-        emp_id = request.POST.get('employeeId')
+        #emp_id = request.POST.get('employeeId')
         email = request.POST.get('email')
         emp_name = request.POST.get('name')
         emp_contact = request.POST.get('contact')
+        emp_address = request.POST.get('address')
         #print("emp_id: "+emp_id)
         #print("name: "+request.POST.get('name'))
         #print("email: "+request.POST.get('email'))
         #print("contact: "+request.POST.get('contact'))
-        check_id = Employee.objects.filter(eid=emp_id) | Employee.objects.filter(eemail=email)
+        check_id = Employee.objects.filter(eemail=email)
         #print("check_id: "+str(check_id.eid))
         if check_id.exists():
             context={"message":"Email or id is already in use"}
         elif len(emp_contact) != 10:
-            context={"message":"Phone number should be of length 10"}
-        elif len(emp_id) > 20:
-            context={"message":"Employee id should be of less than 20 characters"}    
+            context={"message":"Phone number should be of length 10"}   
         else:
-            emp = Employee(eid=emp_id, eemail=email, ename=emp_name, econtact=emp_contact)
+            emp = Employee(eemail=email, ename=emp_name, econtact=emp_contact, eaddress=emp_address)
             emp.save()
             context={"created":"User created successfully"}   
         #context={"message":"Employee added successfully"}
     return render(request, 'emp_add.html', context)
 
 def employee_delete(request, id):
-    print("emp delete id: "+id)
+    #print("emp delete id: "+id)
     try:
         Employee.objects.filter(eid=id).delete()
+        #print("emp delete id: "+id)
     except:
         a=1    
     return redirect('/emp/show/0')
@@ -379,6 +379,7 @@ def employee_update(request, id):
         email = request.POST.get('email')
         emp_name = request.POST.get('name')
         emp_contact = request.POST.get('contact')
+        emp_address = request.POST.get('address')
         if len(emp_contact) != 10:
             message = "Phone number should be of length 10"
         elif len(emp_id) > 20:
@@ -387,6 +388,7 @@ def employee_update(request, id):
             emp.eemail = email
             emp.ename = emp_name
             emp.econtact = emp_contact
+            emp.address = emp_address
             emp.save()
             created ="Employee details updated successfully"
             return render(request, 'emp_update.html', {"emp":emp,"created":created, "message":message})
