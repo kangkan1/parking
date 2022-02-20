@@ -396,6 +396,10 @@ def employee_update(request, id):
     context = {emp}
     return render(request, 'emp_update.html', {"emp":emp,"message":message,"created":created })
 
+def techqueto_assignment(request):
+    context = {'rating_1':14, 'rating_2':17, 'rating_3':7, 'star_1':4.2, 'star_2':4.1, 'star_3':3.7}
+    return render(request, 'techqueto_assignment.html', context)
+
 #error handling
 def error_404(request, *args, **argv):
         data = {'error':'404'}
