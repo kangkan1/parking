@@ -400,6 +400,14 @@ def techqueto_assignment(request):
     context = {'rating_1':14, 'rating_2':17, 'rating_3':7, 'star_1':4.2, 'star_2':4.1, 'star_3':3.7}
     return render(request, 'techqueto_assignment.html', context)
 
+
+def saarthi_assignment(request):
+    return render(request, 'saarthi_assignment.html')
+
+def saarthi_assignment_action(request, st):
+    return render(request, 'saarthi_assignment_action.html', {"action":st})
+
+
 #error handling
 def error_404(request, *args, **argv):
         data = {'error':'404'}

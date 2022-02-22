@@ -30,6 +30,9 @@ urlpatterns = [
     path("emp/delete/<str:id>", views.employee_delete, name="Employee Delete"),
     path("emp/update/<str:id>", views.employee_update, name="Employee Update"),
 
+    path("saarthi_assignment", views.saarthi_assignment, name="saarthi assignment"),
+    path("saarthi_assignment_action/<str:st>/", views.saarthi_assignment_action, name="saarthi assignment action"),
+
     
     path("<str:id>", views.error_404, name="Error"),
     path("<str:id1>/<str:id2>", views.error_404, name="Error")
