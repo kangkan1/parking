@@ -33,6 +33,8 @@ urlpatterns = [
     path("saarthi_assignment", views.saarthi_assignment, name="saarthi assignment"),
     path("saarthi_assignment_action/<str:st>/", views.saarthi_assignment_action, name="saarthi assignment action"),
 
+    path("contact_us_add", views.contact_us_add, name="contact us add"),
+    path("contact_us_show/<str:id>", views.contact_us_show, name="contact us show"),
     
     path("<str:id>", views.error_404, name="Error"),
     path("<str:id1>/<str:id2>", views.error_404, name="Error")

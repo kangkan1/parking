@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
-from parking_app.models import Registration, PageViewsCounter, Employee
+from parking_app.models import Registration, PageViewsCounter, Employee, ContactUs
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -407,7 +407,33 @@ def saarthi_assignment(request):
 def saarthi_assignment_action(request, st):
     return render(request, 'saarthi_assignment_action.html', {"action":st})
 
+def contact_us_add(request):
+    context = {}
+    if request.method == "POST":
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        details = request.POST.get('details')
+        if len(name) == 0 or len(email) == 0 or len(details) == 0:
+            context = {"message":"Form can't be empty"}
+        elif len(name) > 50:
+            context = {"message":"Name can't be more than 50 character"}
+        elif len(details) > 100:
+            context = {"message":"Details can't be more than 100 character"}
+        else:
+            con = ContactUs(name=name, email=email, details = details)
+            con.save()
+            context={"created":"Information recorded successfully. We will get back ASAP"}    
+    return render(request, 'contact_us_add.html', context)
 
+def contact_us_show(request, id):
+    i = int(id)
+    multiplier=10
+    #print("type of id: "+str(type(id)))
+    show = ContactUs.objects.all()[i*multiplier:multiplier*(i+1)]
+    count = ContactUs.objects.all().count()
+    return render(request, 'contact_us_show.html', {'show':show, 
+                "count":count, "range":i, "next":(i+1), "prev":(i-1),
+                "left":(multiplier*i), "right":(multiplier*(i+1))})  
 #error handling
 def error_404(request, *args, **argv):
         data = {'error':'404'}

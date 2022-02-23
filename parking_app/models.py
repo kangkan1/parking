@@ -36,8 +36,13 @@ class Employee(models.Model):
     eid = models.AutoField(primary_key=True)  
     ename = models.CharField(max_length=100)  
     eemail = models.EmailField()  
-    econtact = models.IntegerField(max_length=15) 
+    econtact = models.IntegerField() 
     eaddress = models.CharField(max_length=50, default="Delhi") 
     class Meta:  
-        db_table = "employee"     
+        db_table = "employee" 
+
+class ContactUs(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.EmailField()
+    details = models.CharField(max_length=100)
 
